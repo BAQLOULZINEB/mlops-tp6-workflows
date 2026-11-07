@@ -1,3 +1,11 @@
+"""TP6 - flow_mlops.py
+
+ROLE      : Le workflow Prefect : 4 taches observables (rejouer_pipeline -> lire_metriques -> valider -> notifier).
+ENTREE    : dvc.yaml (via dvc repro), reports/metrics.json, params.yaml (seuil_f1)
+SORTIE    : un flow run 'reentrainement-fraude' visible dans l'interface Prefect (Completed ou Failed)
+A RETENIR : Si valider leve une erreur, notifier ne s'execute pas : le workflow s'arrete tout seul.
+"""
+
 import sys
 import json
 import subprocess

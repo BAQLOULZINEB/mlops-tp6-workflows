@@ -1,3 +1,11 @@
+"""TP6 - verifier_qualite.py
+
+ROLE      : La regle de qualite pour GitHub Actions : sort avec le code 1 si F1 < seuil.
+ENTREE    : reports/metrics.json + params.yaml
+SORTIE    : affichage OK / ECHEC + code de sortie 0 ou 1
+A RETENIR : Code 1 = etape rouge dans GitHub Actions : le commit est marque en echec.
+"""
+
 import sys
 import json
 import yaml
