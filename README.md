@@ -1,18 +1,17 @@
-# TP3 - DVC : versionner les donnees et rendre le pipeline reproductible
+# TP06 - Automatiser les workflows MLOps (Prefect + GitHub Actions)
+
+Fiche explicative : `EXPLICATION_TP6.html` | Rapport : `rapport_tp6.md`
 
 ```powershell
-python -m venv .venv
 .venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-dvc pull          # necessite l'acces au stockage DVC (../dvc-stockage)
-dvc repro
-dvc metrics show
+# terminal 1
+prefect server start                     # http://127.0.0.1:4200
+# terminal 2
+prefect config set PREFECT_API_URL=http://127.0.0.1:4200/api
+dvc pull
+python flow_mlops.py                     # le workflow en 4 taches
+python verifier_qualite.py               # la regle de qualite de la CI
+# terminal 3
+python planifier.py                      # planification hebdomadaire (serve)
+prefect worker start --pool pool-tp      # ou : worker du work pool
 ```
-
-Serveur MLflow (pour `src/journaliser.py`) :
-
-```powershell
-mlflow server --host 127.0.0.1 --port 5000 --backend-store-uri sqlite:///mlflow.db --default-artifact-root ./mlartifacts
-```
-
-Tags : `v1` (5000 lignes, F1 0.8636), `v2` (7000 lignes, F1 0.8423).
