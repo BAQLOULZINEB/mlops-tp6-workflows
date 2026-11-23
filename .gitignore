@@ -12,3 +12,6 @@ mlruns/
 .vscode/
 
 # ATTENTION : pas de data/, models/ ni reports/ ici : DVC s'en charge
+
+# rapports de TP : remis par e-mail, pas sur GitHub
+rapport_tp*.md
